@@ -17,9 +17,9 @@ GAMES = {
     'kanto': {'gen': 3, 'group': 'firered-leafgreen', 'group_id': 7},
 }
 
-# Best Smogon format first; anything else comes after these
-TIERS = ['ou', 'ubers', 'uu', 'ru', 'nu', 'pu', 'lc']
-TIER_NAMES = {'ou': 'OU', 'ubers': 'Ubers', 'uu': 'UU', 'ru': 'RU', 'nu': 'NU', 'pu': 'PU', 'lc': 'LC'}
+# Smogon singles formats, best first; others (doubles) are not used
+TIERS = ['ou', 'ubers', 'uu', 'ru', 'nu', 'pu', 'zu', 'lc']
+TIER_NAMES = {'ou': 'OU', 'ubers': 'Ubers', 'uu': 'UU', 'ru': 'RU', 'nu': 'NU', 'pu': 'PU', 'zu': 'ZU', 'lc': 'LC'}
 
 # Smogon names that are not just the capitalized PokeAPI name
 SMOGON_NAMES = {'nidoran-f': 'Nidoran-F', 'nidoran-m': 'Nidoran-M', 'mr-mime': 'Mr. Mime', 'farfetchd': "Farfetch'd"}
@@ -80,13 +80,25 @@ def offense_rank(name, chosen):
     return 3 if max(evs.get('atk', 0), evs.get('spa', 0)) >= 200 else None
 
 
+def smogon_moves(chosen):
+    """First option of each slot that isn't Hidden Power. None if a slot has no such option."""
+    names = []
+    for slot in chosen['moves']:
+        options = slot if isinstance(slot, list) else [slot]
+        pick = next((m for m in options if not m.startswith('Hidden Power') and m not in names), None)
+        if pick is None:
+            return None
+        names.append(pick)
+    return names
+
+
 def smogon_set(sets):
-    """(label, set) of the best attacking set, best format first. None if there is no attacking set."""
+    """(label, set) of the best attacking set without Hidden Power, best format first, or None."""
     if not sets:
         return None
-    for fmt in sorted(sets, key=lambda f: TIERS.index(f) if f in TIERS else len(TIERS)):
+    for fmt in sorted((f for f in sets if f in TIERS), key=TIERS.index):
         ranked = [(offense_rank(name, chosen), i, name, chosen) for i, (name, chosen) in enumerate(sets[fmt].items())]
-        ranked = [row for row in ranked if row[0] is not None]
+        ranked = [row for row in ranked if row[0] is not None and smogon_moves(row[3])]
         if ranked:
             _, _, name, chosen = min(ranked, key=lambda row: row[:2])
             return f'{TIER_NAMES.get(fmt, fmt.upper())} · {name}', chosen
@@ -144,6 +156,8 @@ def calculated_set(pokemon, group, group_id, moves):
 
     scored, rest = [], []
     for name in learnable(pokemon, group):
+        if name == 'hidden-power':
+            continue
         move = moves[name]
         at = move_at(move, group_id)
         if move['damage_class']['name'] == 'status' or not at['power'] or name in SKIP_MOVES:
@@ -156,15 +170,20 @@ def calculated_set(pokemon, group, group_id, moves):
         scored.append((score, name, at['type'], physical))
     scored.sort(reverse=True)
 
-    picked, seen = [], set()
-    for row in scored:
-        if row[2] not in seen:  # coverage: one move per type first
-            seen.add(row[2])
-            picked.append(row[1])
-    picked += [row[1] for row in scored if row[1] not in picked]
-    picked += sorted(rest)
+    def coverage(rows):
+        """One move per type first, then the other moves."""
+        best, seen = [], set()
+        for row in rows:
+            if row[2] not in seen:
+                seen.add(row[2])
+                best.append(row[1])
+        return best + [row[1] for row in rows if row[1] not in best]
 
+    # Stay on the side of the strongest move; the other side only fills empty slots
     physical = scored[0][3] if scored else stats['attack'] >= stats['special-attack']
+    picked = (coverage([r for r in scored if r[3] == physical]) +
+              coverage([r for r in scored if r[3] != physical]) + sorted(rest))
+
     attack = stats['attack'] if physical else stats['special-attack']
     fast = stats['speed'] > attack
     nature = ('Jolly' if fast else 'Adamant') if physical else ('Timid' if fast else 'Modest')
@@ -193,10 +212,9 @@ def build(dex, game):
                    if url_id(abilities[a]['generation']['url']) <= gen]
         if pending[i]:
             label, chosen = pending[i]
-            names = [first(m) for m in chosen['moves']]
+            names = smogon_moves(chosen)
             can_learn = set(learnable(pokemon[i], group))
-            not_in_game += any(m.split(' ')[0].lower() != 'hidden' and
-                               m.lower().replace(' ', '-').replace("'", '') not in can_learn for m in names)
+            not_in_game += any(m.lower().replace(' ', '-').replace("'", '') not in can_learn for m in names)
             out[i] = {'source': 'smogon', 'label': label,
                       'ability': first(chosen.get('ability')) or (options[0] if options else None),
                       'nature': first(chosen.get('nature')), 'moves': names}
