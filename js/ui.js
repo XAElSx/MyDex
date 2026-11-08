@@ -93,6 +93,52 @@ export function cardHTML(p, pad, { state, origin, living }, version, best) {
     </div>`;
 }
 
+function evolutionMethod(d) {
+  if (!d) return '';
+  const nice = ref => displayName(ref.name);
+  const time = d.time_of_day ? ` (${d.time_of_day})` : '';
+  if (d.trigger.name === 'use-item') return nice(d.item);
+  if (d.trigger.name === 'trade') {
+    return d.held_item ? `Trade holding ${nice(d.held_item)}` : d.trade_species ? `Trade for ${nice(d.trade_species)}` : 'Trade';
+  }
+  if (d.trigger.name !== 'level-up') return nice(d.trigger);
+  if (d.min_level) return `Lv ${d.min_level}${time}`;
+  if (d.min_happiness) return `Friendship${time}`;
+  if (d.min_beauty) return 'Beauty';
+  if (d.min_affection) return 'Affection';
+  if (d.known_move) return `Knows ${nice(d.known_move)}`;
+  if (d.known_move_type) return `Knows ${nice(d.known_move_type)} move`;
+  if (d.held_item) return `Level up holding ${nice(d.held_item)}${time}`;
+  if (d.location) return `At ${nice(d.location)}`;
+  return `Level up${time}`;
+}
+
+// Evolution line, one column per stage. Stages in the current dex can be opened.
+export function evolutionHTML(root, currentId, inDex, stateOf) {
+  if (!root.next.length) return '<p class="evo-none">Does not evolve</p>';
+  const stages = [];
+  const walk = (stage, depth) => {
+    (stages[depth] ||= []).push(stage);
+    stage.next.forEach(next => walk(next, depth + 1));
+  };
+  walk(root, 0);
+
+  const mon = stage => {
+    const here = inDex(stage.id);
+    const state = stateOf(stage.id);
+    const current = stage.id === currentId;
+    const cls = `evo-mon${current ? ' current' : ''}${!here ? ' out' : state === 'none' ? ' missing' : ''}`;
+    const body = `<img src="${spriteFor(stage.id, state)}" alt="" crossorigin="anonymous" draggable="false">
+      <span>${displayName(stage.name)}</span>
+      <span class="evo-how">${evolutionMethod(stage.details)}</span>`;
+    return here && !current
+      ? `<button type="button" class="${cls}" data-evo="${stage.id}">${body}</button>`
+      : `<div class="${cls}"${here ? '' : ' title="Not in this dex"'}>${body}</div>`;
+  };
+  return stages.map(col => `<div class="evo-stage${col.length > 3 ? ' evo-many' : ''}">${col.map(mon).join('')}</div>`)
+    .join('<span class="evo-arrow" aria-hidden="true">›</span>');
+}
+
 export function boxHTML(chunk, index, pad, closed, recordOf, versionOf, bestOf) {
   return `
     <section class="box${closed ? ' collapsed' : ''}" data-box="${index}">

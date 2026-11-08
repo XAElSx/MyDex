@@ -1,6 +1,6 @@
 import { getDexRecords, updateRecord, getAllRecords } from './db.js';
-import { loadDex, loadExclusives, loadBestCatch, loadBestSets, moveLocalCache } from './api.js';
-import { ICONS, VIEWS, ORIGINS, originTag, spriteFor, cardHTML, boxHTML, bestText } from './ui.js';
+import { loadDex, loadExclusives, loadBestCatch, loadBestSets, loadEvolution, moveLocalCache } from './api.js';
+import { ICONS, VIEWS, ORIGINS, originTag, spriteFor, cardHTML, boxHTML, bestText, evolutionHTML } from './ui.js';
 import { scheduleSync, exportFile } from './sync.js';
 import { searchKey } from './names.js';
 
@@ -343,7 +343,10 @@ const setEl = document.getElementById('peek-set');
 const markBtns = peek.querySelectorAll('[data-mark]');
 originEl.innerHTML = '<option value="">Not set</option>' +
   ORIGINS.map(([code, label]) => `<option value="${code}">${label}</option>`).join('');
+const evoEl = document.getElementById('peek-evo');
 let peekCard = null;
+let peekEvo = null; // evolution line of the open Pokémon, once loaded
+const cardOf = id => dexEl.querySelector(`.card[data-id="${id}"]`);
 
 // Same rules as the gestures on a card
 const MARK_PATCH = {
@@ -386,8 +389,23 @@ function openPeek(card) {
     }));
   }
 
+  peekEvo = null;
   showPeekState();
-  peek.showModal();
+  if (!peek.open) peek.showModal();
+  peek.scrollTop = 0;
+  // Optional extra: without a connection on a first view the section just stays hidden
+  loadEvolution(id).then(line => {
+    if (peekCard !== card) return;
+    peekEvo = line;
+    drawEvolution();
+  }).catch(() => {});
+}
+
+function drawEvolution() {
+  evoEl.hidden = !peekEvo;
+  if (!peekEvo) return;
+  document.getElementById('peek-evo-chain').innerHTML =
+    evolutionHTML(peekEvo, Number(peekCard.dataset.id), id => !!cardOf(id), stateOf);
 }
 
 function showPeekState() {
@@ -398,6 +416,7 @@ function showPeekState() {
   const pressed = { caught: state !== 'none', shiny: state === 'shiny', living: !!living };
   markBtns.forEach(btn => btn.setAttribute('aria-pressed', pressed[btn.dataset.mark]));
   originEl.value = origin || '';
+  drawEvolution();
 }
 
 async function saveOrigin(card, origin) {
@@ -423,6 +442,8 @@ peek.addEventListener('close', () => { peekCard = null; });
 peek.addEventListener('click', e => {
   // The dialog has no padding, so only the dimmed backdrop lands here
   if (e.target === peek) return peek.close();
+  const evo = e.target.closest('[data-evo]');
+  if (evo) return openPeek(cardOf(evo.dataset.evo));
   const btn = e.target.closest('[data-mark]');
   if (!btn) return;
   const saving = saveMarks(peekCard, MARK_PATCH[btn.dataset.mark](recordOf(peekCard.dataset.id)));

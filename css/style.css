@@ -580,6 +580,34 @@ header h1 { margin: 0; }
 .peek-set dd { margin: 0; }
 #peek-moves { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; margin: 0; padding: 0; list-style: none; }
 
+.evo-chain { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; }
+.evo-stage { display: flex; flex-direction: column; gap: 4px; }
+.evo-many { display: grid; flex-basis: 100%; grid-template-columns: repeat(4, 1fr); }
+.evo-arrow { color: var(--muted); font-size: 18px; }
+.evo-mon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 72px;
+  padding: 2px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+}
+button.evo-mon { cursor: pointer; }
+.evo-many .evo-mon { width: auto; }
+.evo-mon.current { border-color: var(--accent); }
+.evo-mon img { width: 56px; height: 56px; image-rendering: pixelated; }
+.evo-mon.missing img, .evo-mon.out img { filter: grayscale(1); opacity: .5; }
+.evo-mon.out { color: var(--muted); }
+.evo-how { font-size: 11px; color: var(--muted); }
+.evo-none { margin: 0; font-size: 14px; color: var(--muted); }
+
 /* ---------- Loading / error ---------- */
 .message { padding: 32px 16px; text-align: center; color: var(--muted); }
 .message.error { color: #ffb4a8; }

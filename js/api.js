@@ -30,6 +30,22 @@ export async function loadDex(name) {
   }));
 }
 
+// Evolution line of a species as a tree: { id, name, details, next: [...] }.
+// details = how this stage is reached (PokéAPI evolution_details entry), null for the first stage.
+const toStage = node => ({
+  id: Number(node.species.url.split('/').filter(Boolean).pop()),
+  name: node.species.name,
+  details: node.evolution_details[0] || null,
+  next: node.evolves_to.map(toStage)
+});
+
+export async function loadEvolution(speciesId) {
+  const species = await getJSON('pokemon-species/' + speciesId);
+  if (!species.evolution_chain) return null;
+  const line = await getJSON(species.evolution_chain.url.replace(API, ''));
+  return toStage(line.chain);
+}
+
 // Version exclusives for one dex: Map speciesId -> { name, tag, color }.
 // Empty when the dex has none, or when the file can't be loaded (badges are optional).
 let exclusives;
