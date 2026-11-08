@@ -1,5 +1,5 @@
 import { getDexRecords, updateRecord, getAllRecords } from './db.js';
-import { loadDex, loadExclusives, loadBestCatch, moveLocalCache } from './api.js';
+import { loadDex, loadExclusives, loadBestCatch, loadBestSets, moveLocalCache } from './api.js';
 import { ICONS, VIEWS, ORIGINS, originTag, spriteFor, cardHTML, boxHTML, bestText } from './ui.js';
 import { scheduleSync, exportFile } from './sync.js';
 import { searchKey } from './names.js';
@@ -50,7 +50,10 @@ const FILTERS = {
   missing: c => c.dataset.state === 'none',
   shiny: c => c.dataset.state === 'shiny',
   living: c => c.dataset.living === '1',
-  exclusive: c => !!c.querySelector('.version'), // only dexes with exclusives show this tab
+  exclusive: c => { // only dexes with exclusives show this tab
+    const v = versionOf(Number(c.dataset.id));
+    return !!v && (versionFilter === 'all' || v.name === versionFilter);
+  },
   best: c => !!c.querySelector('.best') // only dexes with best-catch data show this tab
 };
 
@@ -58,6 +61,7 @@ const dexEl = document.getElementById('dex');
 const gameEl = document.getElementById('game');
 const searchEl = document.getElementById('search');
 const tabsEl = document.getElementById('tabs');
+const subtabsEl = document.getElementById('subtabs');
 const viewBtn = document.getElementById('view-btn');
 const viewMenu = document.getElementById('view-menu');
 const progressEl = document.getElementById('progress');
@@ -66,6 +70,7 @@ const gensEl = document.getElementById('gens');
 let game = localStorage.getItem('game') || 'national';
 let filter = localStorage.getItem('filter');
 if (!FILTERS[filter]) filter = 'all';
+let versionFilter = localStorage.getItem('versionFilter') || 'all'; // subtab of Exclusives
 let view = localStorage.getItem('view');
 if (!VIEWS[view]) view = 'box';
 let records = {}; // speciesId -> { state, origin, living } for the current dex
@@ -74,6 +79,7 @@ let versions = new Map(); // speciesId -> version-exclusive info for the current
 const versionOf = id => versions.get(id);
 let bestCatch = new Map(); // speciesId -> best wild catch of its evolution line
 const bestOf = id => bestCatch.get(id);
+let bestSets = new Map(); // speciesId -> best ability, nature and moves
 
 const NO_RECORD = { state: 'none', origin: null, living: false };
 const recordOf = id => records[id] || NO_RECORD;
@@ -91,6 +97,7 @@ function getCollapsed() {
 function render() {
   const pad = list.length >= 1000 ? 4 : 3;
   dexEl.className = 'view-' + view;
+  buildSubtabs();
 
   if (view === 'box') {
     const collapsed = getCollapsed();
@@ -332,6 +339,7 @@ const peekImg = document.getElementById('peek-img');
 const versionEl = document.getElementById('peek-version');
 const bestEl = document.getElementById('peek-best');
 const originEl = document.getElementById('peek-origin');
+const setEl = document.getElementById('peek-set');
 const markBtns = peek.querySelectorAll('[data-mark]');
 originEl.innerHTML = '<option value="">Not set</option>' +
   ORIGINS.map(([code, label]) => `<option value="${code}">${label}</option>`).join('');
@@ -363,6 +371,20 @@ function openPeek(card) {
   const best = bestOf(id);
   bestEl.hidden = !best;
   bestEl.textContent = best ? 'Best wild catch: ' + bestText(best) : '';
+
+  const set = bestSets.get(id);
+  setEl.hidden = !set;
+  if (set) {
+    document.getElementById('peek-set-source').textContent =
+      set.source === 'smogon' ? 'Smogon ' + set.label : 'Calculated';
+    document.getElementById('peek-ability').textContent = set.ability;
+    document.getElementById('peek-nature').textContent = set.nature;
+    document.getElementById('peek-moves').replaceChildren(...set.moves.map(move => {
+      const li = document.createElement('li');
+      li.textContent = move;
+      return li;
+    }));
+  }
 
   showPeekState();
   peek.showModal();
@@ -448,13 +470,14 @@ async function showGame(name) {
   dexEl.className = '';
   dexEl.innerHTML = '<p class="message">Loading…</p>';
   try {
-    const [entries, saved, exclusive, best] =
-      await Promise.all([loadDex(name), getDexRecords(name), loadExclusives(name), loadBestCatch(name)]);
+    const [entries, saved, exclusive, best, sets] = await Promise.all(
+      [loadDex(name), getDexRecords(name), loadExclusives(name), loadBestCatch(name), loadBestSets(name)]);
     if (game !== name) return; // user switched again while loading
     list = entries;
     records = saved;
     versions = exclusive;
     bestCatch = best;
+    bestSets = sets;
     searchEl.value = '';
     render();
   } catch (err) {
@@ -474,6 +497,22 @@ gameEl.addEventListener('change', () => showGame(gameEl.value));
 function showTabs() {
   tabsEl.querySelectorAll('.tab').forEach(tab =>
     tab.setAttribute('aria-selected', tab.dataset.filter === filter));
+  showSubtabs();
+}
+
+// One subtab per version of the current dex, plus All
+function buildSubtabs() {
+  const names = [...new Set([...versions.values()].map(v => v.name))];
+  if (!names.includes(versionFilter)) versionFilter = 'all';
+  subtabsEl.innerHTML = ['all', ...names].map(name =>
+    `<button class="tab" role="tab" data-version="${name}">${name === 'all' ? 'All' : name}</button>`).join('');
+  showSubtabs();
+}
+
+function showSubtabs() {
+  subtabsEl.hidden = filter !== 'exclusive' || !versions.size;
+  subtabsEl.querySelectorAll('.tab').forEach(tab =>
+    tab.setAttribute('aria-selected', tab.dataset.version === versionFilter));
 }
 
 tabsEl.addEventListener('click', e => {
@@ -482,6 +521,15 @@ tabsEl.addEventListener('click', e => {
   filter = tab.dataset.filter;
   localStorage.setItem('filter', filter);
   showTabs();
+  applyFilters();
+});
+
+subtabsEl.addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  versionFilter = tab.dataset.version;
+  localStorage.setItem('versionFilter', versionFilter);
+  showSubtabs();
   applyFilters();
 });
 

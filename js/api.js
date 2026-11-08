@@ -56,6 +56,16 @@ export async function loadBestCatch(dex) {
   return new Map(Object.entries(picks).map(([id, found]) => [Number(id), { games, found }]));
 }
 
+// Best ability, nature and moves for one dex: Map speciesId -> { source, label, ability, nature, moves }.
+let bestSets;
+export async function loadBestSets(dex) {
+  bestSets ??= fetch('data/best-sets.json')
+    .then(res => (res.ok ? res.json() : { dexes: {} }))
+    .catch(() => ({ dexes: {} }));
+  const sets = (await bestSets).dexes[dex] || {};
+  return new Map(Object.entries(sets).map(([id, set]) => [Number(id), set]));
+}
+
 // Older versions cached dex lists in localStorage as dex:<name>. Move them over once.
 export async function moveLocalCache() {
   localStorage.removeItem('species'); // step-2 cache, no longer used

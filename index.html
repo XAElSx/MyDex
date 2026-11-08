@@ -68,6 +68,8 @@
     <button class="tab" role="tab" data-filter="best" id="tab-best" hidden>Best catch</button>
   </div>
 
+  <div id="subtabs" role="tablist" aria-label="Version" hidden></div>
+
   <p id="hint">Tap: caught · Hold: shiny · Double tap (PC: triple click): living dex</p>
 
   <div id="dex"></div>
@@ -90,6 +92,14 @@
       <label class="peek-origin">Caught in
         <select id="peek-origin"></select>
       </label>
+      <section id="peek-set" class="peek-set" hidden>
+        <h3>Best set <span id="peek-set-source"></span></h3>
+        <dl>
+          <dt>Ability</dt><dd id="peek-ability"></dd>
+          <dt>Nature</dt><dd id="peek-nature"></dd>
+          <dt>Moves</dt><dd><ul id="peek-moves"></ul></dd>
+        </dl>
+      </section>
     </form>
   </dialog>
   <script type="module" src="js/app.js"></script>

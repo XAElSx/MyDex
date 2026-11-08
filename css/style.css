@@ -249,6 +249,19 @@ header h1 { margin: 0; }
 
 .tab[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
 
+#subtabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+#subtabs[hidden] { display: none; }
+#subtabs .tab { min-height: 34px; }
+
 #hint {
   margin: 12px 0;
   text-align: center;
@@ -517,7 +530,7 @@ header h1 { margin: 0; }
   cursor: pointer;
 }
 
-#peek-img { width: 192px; height: 192px; image-rendering: pixelated; }
+#peek-img { width: 160px; height: 160px; image-rendering: pixelated; }
 
 .peek-meta { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; color: var(--muted); }
 #peek-version { position: static; font-size: 12px; }
@@ -551,6 +564,21 @@ header h1 { margin: 0; }
   color: var(--text);
   font: inherit;
 }
+
+.peek-set {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  text-align: left;
+}
+.peek-set h3 { margin: 0 0 8px; font-size: 14px; }
+#peek-set-source { margin-left: 4px; font-size: 12px; font-weight: 500; color: var(--muted); }
+.peek-set dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; font-size: 14px; }
+.peek-set dt { color: var(--muted); }
+.peek-set dd { margin: 0; }
+#peek-moves { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Loading / error ---------- */
 .message { padding: 32px 16px; text-align: center; color: var(--muted); }

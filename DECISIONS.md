@@ -34,6 +34,10 @@ Choices made where the spec was unclear or conflicted with the existing app.
 ## Center peek
 - Opened by the "i" button, so tap, hold and double tap stay as fast marking. It replaces the old bottom sheet. Marks and the caught-in game save at once, so Save, Cancel and Clear are gone ("Not set" clears the game).
 
+## Best set
+- The peek shows a best ability, nature and moves. Smogon set of the dex's generation when one exists: best format first (OU, Ubers, UU, ...), then the first set listed, and the first option of each slot. Without one (36 of 151 in Kanto, mostly unevolved) it is calculated and labelled "Calculated": up to 4 moves it can learn in that game by level, TM or tutor, scored by power x accuracy x STAB x its attack stat, one per type first; nature from its attack stat and speed; first regular ability.
+- Smogon sets cover all of Gen 3, so some use moves from breeding or from tutors outside FireRed/LeafGreen. Sets are shown as Smogon lists them.
+
 ## UI
 - The top bar keeps its existing layout: title, dex selector and the Sync menu (which holds export/import) on top; search and the view switch below; the Missing filter is a tab. Nothing was moved, so existing users find everything where it was.
 
