@@ -53,11 +53,9 @@ export const spriteFor = (id, state) =>
 const versionBadge = v =>
   (v ? `<span class="version" style="--v:${v.color}" title="${v.name} exclusive">${v.tag}</span>` : '');
 
-// "Lv 27" + where, for the most evolved stage of a line that can be caught in the wild.
 // Games with the same level and place are merged; a game tag is added when they differ
 // or when the Pokémon is not catchable in every game of the dex.
-function bestBadge(best) {
-  if (!best) return '';
+function bestGroups(best) {
   const groups = new Map();
   for (const [tag, [level, place]] of Object.entries(best.found)) {
     const key = level + '|' + place;
@@ -65,10 +63,19 @@ function bestBadge(best) {
   }
   const list = [...groups.values()];
   const tagged = list.length > 1 || list[0].tags.length < best.games.length;
-  const label = g => (tagged ? g.tags.join('/') + ' ' : '') + 'Lv ' + g.level;
-  const full = list.map(g => `${tagged ? g.tags.join('/') + ': ' : ''}Lv ${g.level}, ${g.place}`).join(' · ');
-  return `<span class="best" title="Best wild catch: ${full}">${list.map(label).join(' · ')}` +
-    `<span class="best-place"> · ${list.map(g => g.place).join(' / ')}</span></span>`;
+  return list.map(g => ({ ...g, prefix: tagged ? g.tags.join('/') + ' ' : '' }));
+}
+
+export const bestText = best =>
+  bestGroups(best).map(g => `${g.prefix}Lv ${g.level}, ${g.place}`).join(' · ');
+
+// "Lv 27" + where, for the most evolved stage of a line that can be caught in the wild
+function bestBadge(best) {
+  if (!best) return '';
+  const groups = bestGroups(best);
+  const places = [...new Set(groups.map(g => g.place))].join(' / ');
+  return `<span class="best" title="Best wild catch: ${bestText(best)}">` +
+    `${groups.map(g => `${g.prefix}Lv ${g.level}`).join(' · ')}<span class="best-place">${places}</span></span>`;
 }
 
 export function cardHTML(p, pad, { state, origin, living }, version, best) {

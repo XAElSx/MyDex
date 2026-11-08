@@ -7,388 +7,14 @@
     "LG"
    ],
    "picks": {
-    "61": {
-     "FR": [
-      30,
-      "Viridian City"
-     ],
-     "LG": [
-      30,
-      "Viridian City"
-     ]
-    },
-    "24": {
-     "FR": [
-      46,
-      "Victory Road 2 2f"
-     ]
-    },
-    "42": {
-     "FR": [
-      61,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      61,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "114": {
+    "124": {
      "FR": [
       100,
-      "Cinnabar Island Cinnabar Lab"
+      "Cerulean City"
      ],
      "LG": [
       100,
-      "Cinnabar Island Cinnabar Lab"
-     ]
-    },
-    "117": {
-     "FR": [
-      35,
-      "Sea Route 19"
-     ]
-    },
-    "116": {
-     "LG": [
-      35,
-      "Vermilion City"
-     ]
-    },
-    "51": {
-     "FR": [
-      31,
-      "Digletts Cave"
-     ],
-     "LG": [
-      31,
-      "Digletts Cave"
-     ]
-    },
-    "33": {
-     "FR": [
-      33,
-      "Safari Zone Area 1 East"
-     ],
-     "LG": [
-      100,
-      "Route 11"
-     ]
-    },
-    "93": {
-     "FR": [
-      52,
-      "Lost Cave Room 1"
-     ],
-     "LG": [
-      52,
-      "Lost Cave Room 1"
-     ]
-    },
-    "35": {
-     "FR": [
-      12,
-      "mt. Moon B2f"
-     ],
-     "LG": [
-      12,
-      "mt. Moon B2f"
-     ]
-    },
-    "119": {
-     "FR": [
-      30,
-      "Fuchsia City"
-     ],
-     "LG": [
-      30,
-      "Fuchsia City"
-     ]
-    },
-    "44": {
-     "FR": [
-      48,
-      "Water Path"
-     ]
-    },
-    "120": {
-     "LG": [
-      25,
-      "Cinnabar Island"
-     ]
-    },
-    "17": {
-     "FR": [
-      50,
-      "Five Isle Meadow"
-     ],
-     "LG": [
-      50,
-      "Five Isle Meadow"
-     ]
-    },
-    "101": {
-     "FR": [
-      100,
-      "Cinnabar Island Cinnabar Lab"
-     ],
-     "LG": [
-      100,
-      "Cinnabar Island Cinnabar Lab"
-     ]
-    },
-    "143": {
-     "FR": [
-      30,
-      "Route 12"
-     ],
-     "LG": [
-      30,
-      "Route 12"
-     ]
-    },
-    "113": {
-     "FR": [
-      26,
-      "Safari Zone Area 2 North"
-     ],
-     "LG": [
-      26,
-      "Safari Zone Area 2 North"
-     ]
-    },
-    "83": {
-     "FR": [
-      100,
-      "Vermilion City"
-     ],
-     "LG": [
-      100,
-      "Vermilion City"
-     ]
-    },
-    "58": {
-     "FR": [
-      32,
-      "Pokemon Mansion 1f"
-     ]
-    },
-    "22": {
-     "FR": [
-      50,
-      "Water Path"
-     ],
-     "LG": [
-      50,
-      "Water Path"
-     ]
-    },
-    "102": {
-     "FR": [
-      35,
-      "Berry Forest"
-     ],
-     "LG": [
-      35,
-      "Berry Forest"
-     ]
-    },
-    "88": {
-     "FR": [
-      40,
-      "Celadon City"
-     ]
-    },
-    "89": {
-     "LG": [
-      34,
-      "Pokemon Mansion B1f"
-     ]
-    },
-    "39": {
-     "FR": [
-      7,
-      "Route 3"
-     ],
-     "LG": [
-      7,
-      "Route 3"
-     ]
-    },
-    "128": {
-     "FR": [
-      28,
-      "Safari Zone Area 2 North"
-     ],
-     "LG": [
-      28,
-      "Safari Zone Area 2 North"
-     ]
-    },
-    "55": {
-     "FR": [
-      65,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "111": {
-     "FR": [
-      26,
-      "Safari Zone Area 2 North"
-     ],
-     "LG": [
-      26,
-      "Safari Zone Area 2 North"
-     ]
-    },
-    "145": {
-     "FR": [
-      50,
-      "Power Plant"
-     ],
-     "LG": [
-      50,
-      "Power Plant"
-     ]
-    },
-    "64": {
-     "FR": [
-      67,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      67,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "130": {
-     "FR": [
-      35,
-      "Seafoam Islands B3f"
-     ],
-     "LG": [
-      35,
-      "Seafoam Islands B3f"
-     ]
-    },
-    "20": {
-     "FR": [
-      38,
-      "Pokemon Mansion B1f"
-     ],
-     "LG": [
-      38,
-      "Pokemon Mansion B1f"
-     ]
-    },
-    "90": {
-     "FR": [
-      25,
-      "Cinnabar Island"
-     ]
-    },
-    "87": {
-     "FR": [
-      53,
-      "Icefall Cave Entrance"
-     ],
-     "LG": [
-      53,
-      "Icefall Cave Entrance"
-     ]
-    },
-    "131": {
-     "FR": [
-      45,
-      "Icefall Cave Waterfall"
-     ],
-     "LG": [
-      45,
-      "Icefall Cave Waterfall"
-     ]
-    },
-    "122": {
-     "FR": [
-      100,
-      "Route 2 North Towards Pewter City"
-     ],
-     "LG": [
-      100,
-      "Route 2 North Towards Pewter City"
-     ]
-    },
-    "80": {
-     "LG": [
-      65,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "126": {
-     "LG": [
-      40,
-      "mt. Ember"
-     ]
-    },
-    "57": {
-     "FR": [
-      61,
-      "Cerulean Cave 1f"
-     ],
-     "LG": [
-      61,
-      "Cerulean Cave 1f"
-     ]
-    },
-    "14": {
-     "FR": [
-      9,
-      "Route 25"
-     ],
-     "LG": [
-      9,
-      "Route 25"
-     ]
-    },
-    "47": {
-     "FR": [
-      64,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      64,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "75": {
-     "FR": [
-      65,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      65,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "98": {
-     "FR": [
-      15,
-      "Seafoam Islands B3f"
-     ]
-    },
-    "99": {
-     "LG": [
-      35,
-      "Sea Route 19"
-     ]
-    },
-    "144": {
-     "FR": [
-      50,
-      "Seafoam Islands B4f"
-     ],
-     "LG": [
-      50,
-      "Seafoam Islands B4f"
+      "Cerulean City"
      ]
     },
     "11": {
@@ -401,112 +27,14 @@
       "Route 25"
      ]
     },
-    "124": {
+    "39": {
      "FR": [
-      100,
-      "Cerulean City"
+      7,
+      "Route 3"
      ],
      "LG": [
-      100,
-      "Cerulean City"
-     ]
-    },
-    "49": {
-     "FR": [
-      40,
-      "Berry Forest"
-     ],
-     "LG": [
-      40,
-      "Berry Forest"
-     ]
-    },
-    "67": {
-     "FR": [
-      52,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      52,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "148": {
-     "FR": [
-      35,
-      "Safari Zone Middle"
-     ],
-     "LG": [
-      35,
-      "Safari Zone Middle"
-     ]
-    },
-    "150": {
-     "FR": [
-      70,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      70,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "125": {
-     "FR": [
-      35,
-      "Power Plant"
-     ]
-    },
-    "30": {
-     "FR": [
-      100,
-      "Route 11"
-     ],
-     "LG": [
-      33,
-      "Safari Zone Area 1 East"
-     ]
-    },
-    "82": {
-     "FR": [
-      55,
-      "Cerulean Cave B1f"
-     ],
-     "LG": [
-      55,
-      "Cerulean Cave B1f"
-     ]
-    },
-    "73": {
-     "FR": [
-      45,
-      "Icefall Cave Waterfall"
-     ],
-     "LG": [
-      45,
-      "Icefall Cave Waterfall"
-     ]
-    },
-    "28": {
-     "LG": [
-      46,
-      "Victory Road 2 2f"
-     ]
-    },
-    "115": {
-     "FR": [
-      28,
-      "Safari Zone Area 3 West"
-     ],
-     "LG": [
-      28,
-      "Safari Zone Area 3 West"
-     ]
-    },
-    "37": {
-     "LG": [
-      32,
-      "Pokemon Mansion 1f"
+      7,
+      "Route 3"
      ]
     },
     "105": {
@@ -519,6 +47,88 @@
       "Sevault Canyon"
      ]
     },
+    "37": {
+     "LG": [
+      32,
+      "Pokémon Mansion 1F"
+     ]
+    },
+    "93": {
+     "FR": [
+      52,
+      "Lost Cave Room 1"
+     ],
+     "LG": [
+      52,
+      "Lost Cave Room 1"
+     ]
+    },
+    "80": {
+     "LG": [
+      65,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "111": {
+     "FR": [
+      26,
+      "Safari Zone North"
+     ],
+     "LG": [
+      26,
+      "Safari Zone North"
+     ]
+    },
+    "108": {
+     "FR": [
+      100,
+      "Route 18"
+     ],
+     "LG": [
+      100,
+      "Route 18"
+     ]
+    },
+    "150": {
+     "FR": [
+      70,
+      "Cerulean Cave B1F"
+     ],
+     "LG": [
+      70,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "51": {
+     "FR": [
+      31,
+      "Diglett's Cave"
+     ],
+     "LG": [
+      31,
+      "Diglett's Cave"
+     ]
+    },
+    "131": {
+     "FR": [
+      45,
+      "Icefall Cave Waterfall"
+     ],
+     "LG": [
+      45,
+      "Icefall Cave Waterfall"
+     ]
+    },
+    "22": {
+     "FR": [
+      50,
+      "Water Path"
+     ],
+     "LG": [
+      50,
+      "Water Path"
+     ]
+    },
     "53": {
      "FR": [
       52,
@@ -529,14 +139,288 @@
       "Ruin Valley"
      ]
     },
+    "122": {
+     "FR": [
+      100,
+      "Route 2 North"
+     ],
+     "LG": [
+      100,
+      "Route 2 North"
+     ]
+    },
+    "25": {
+     "FR": [
+      26,
+      "Power Plant"
+     ],
+     "LG": [
+      26,
+      "Power Plant"
+     ]
+    },
+    "119": {
+     "FR": [
+      30,
+      "Fuchsia City"
+     ],
+     "LG": [
+      30,
+      "Fuchsia City"
+     ]
+    },
+    "30": {
+     "FR": [
+      100,
+      "Route 11"
+     ],
+     "LG": [
+      33,
+      "Safari Zone East"
+     ]
+    },
+    "123": {
+     "FR": [
+      28,
+      "Safari Zone East"
+     ]
+    },
+    "75": {
+     "FR": [
+      65,
+      "Cerulean Cave B1F"
+     ],
+     "LG": [
+      65,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "20": {
+     "FR": [
+      38,
+      "Pokémon Mansion B1F"
+     ],
+     "LG": [
+      38,
+      "Pokémon Mansion B1F"
+     ]
+    },
+    "84": {
+     "FR": [
+      28,
+      "Route 17"
+     ],
+     "LG": [
+      28,
+      "Route 17"
+     ]
+    },
+    "55": {
+     "FR": [
+      65,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "98": {
+     "FR": [
+      15,
+      "Seafoam Islands B3F"
+     ]
+    },
+    "99": {
+     "LG": [
+      35,
+      "Route 19"
+     ]
+    },
+    "17": {
+     "FR": [
+      50,
+      "Five Isle Meadow"
+     ],
+     "LG": [
+      50,
+      "Five Isle Meadow"
+     ]
+    },
+    "33": {
+     "FR": [
+      33,
+      "Safari Zone East"
+     ],
+     "LG": [
+      100,
+      "Route 11"
+     ]
+    },
+    "14": {
+     "FR": [
+      9,
+      "Route 25"
+     ],
+     "LG": [
+      9,
+      "Route 25"
+     ]
+    },
+    "57": {
+     "FR": [
+      61,
+      "Cerulean Cave 1F"
+     ],
+     "LG": [
+      61,
+      "Cerulean Cave 1F"
+     ]
+    },
+    "144": {
+     "FR": [
+      50,
+      "Seafoam Islands B4F"
+     ],
+     "LG": [
+      50,
+      "Seafoam Islands B4F"
+     ]
+    },
+    "49": {
+     "FR": [
+      40,
+      "Berry Forest"
+     ],
+     "LG": [
+      40,
+      "Berry Forest"
+     ]
+    },
+    "35": {
+     "FR": [
+      12,
+      "Mt. Moon B2F"
+     ],
+     "LG": [
+      12,
+      "Mt. Moon B2F"
+     ]
+    },
+    "67": {
+     "FR": [
+      52,
+      "Cerulean Cave B1F"
+     ],
+     "LG": [
+      52,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "42": {
+     "FR": [
+      61,
+      "Cerulean Cave B1F"
+     ],
+     "LG": [
+      61,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "114": {
+     "FR": [
+      100,
+      "Cinnabar Lab"
+     ],
+     "LG": [
+      100,
+      "Cinnabar Lab"
+     ]
+    },
+    "44": {
+     "FR": [
+      48,
+      "Water Path"
+     ]
+    },
     "132": {
      "FR": [
       67,
-      "Cerulean Cave B1f"
+      "Cerulean Cave B1F"
      ],
      "LG": [
       67,
-      "Cerulean Cave B1f"
+      "Cerulean Cave B1F"
+     ]
+    },
+    "101": {
+     "FR": [
+      100,
+      "Cinnabar Lab"
+     ],
+     "LG": [
+      100,
+      "Cinnabar Lab"
+     ]
+    },
+    "70": {
+     "LG": [
+      48,
+      "Water Path"
+     ]
+    },
+    "120": {
+     "LG": [
+      25,
+      "Cinnabar Island"
+     ]
+    },
+    "125": {
+     "FR": [
+      35,
+      "Power Plant"
+     ]
+    },
+    "61": {
+     "FR": [
+      30,
+      "Viridian City"
+     ],
+     "LG": [
+      30,
+      "Viridian City"
+     ]
+    },
+    "47": {
+     "FR": [
+      64,
+      "Cerulean Cave B1F"
+     ],
+     "LG": [
+      64,
+      "Cerulean Cave B1F"
+     ]
+    },
+    "83": {
+     "FR": [
+      100,
+      "Vermilion City"
+     ],
+     "LG": [
+      100,
+      "Vermilion City"
+     ]
+    },
+    "127": {
+     "LG": [
+      28,
+      "Safari Zone East"
+     ]
+    },
+    "145": {
+     "FR": [
+      50,
+      "Power Plant"
+     ],
+     "LG": [
+      50,
+      "Power Plant"
      ]
     },
     "97": {
@@ -552,33 +436,95 @@
     "78": {
      "FR": [
       42,
-      "mt. Ember"
+      "Mt. Ember"
      ],
      "LG": [
       42,
-      "mt. Ember"
+      "Mt. Ember"
      ]
     },
-    "127": {
+    "82": {
+     "FR": [
+      55,
+      "Cerulean Cave B1F"
+     ],
      "LG": [
-      28,
-      "Safari Zone Area 1 East"
+      55,
+      "Cerulean Cave B1F"
      ]
     },
-    "123": {
+    "88": {
      "FR": [
-      28,
-      "Safari Zone Area 1 East"
+      40,
+      "Celadon City"
      ]
     },
-    "84": {
+    "89": {
+     "LG": [
+      34,
+      "Pokémon Mansion B1F"
+     ]
+    },
+    "117": {
+     "FR": [
+      35,
+      "Route 19"
+     ]
+    },
+    "116": {
+     "LG": [
+      35,
+      "Vermilion City"
+     ]
+    },
+    "115": {
      "FR": [
       28,
-      "Route 17"
+      "Safari Zone West"
      ],
      "LG": [
       28,
-      "Route 17"
+      "Safari Zone West"
+     ]
+    },
+    "58": {
+     "FR": [
+      32,
+      "Pokémon Mansion 1F"
+     ]
+    },
+    "90": {
+     "FR": [
+      25,
+      "Cinnabar Island"
+     ]
+    },
+    "24": {
+     "FR": [
+      46,
+      "Victory Road 2F"
+     ]
+    },
+    "130": {
+     "FR": [
+      35,
+      "Seafoam Islands B3F"
+     ],
+     "LG": [
+      35,
+      "Seafoam Islands B3F"
+     ]
+    },
+    "110": {
+     "FR": [
+      34,
+      "Pokémon Mansion B1F"
+     ]
+    },
+    "109": {
+     "LG": [
+      40,
+      "Celadon City"
      ]
     },
     "95": {
@@ -591,52 +537,106 @@
       "Sevault Canyon"
      ]
     },
-    "110": {
+    "64": {
      "FR": [
-      34,
-      "Pokemon Mansion B1f"
-     ]
-    },
-    "109": {
-     "LG": [
-      40,
-      "Celadon City"
-     ]
-    },
-    "108": {
-     "FR": [
-      100,
-      "Route 18"
+      67,
+      "Cerulean Cave B1F"
      ],
      "LG": [
-      100,
-      "Route 18"
+      67,
+      "Cerulean Cave B1F"
      ]
     },
-    "70": {
-     "LG": [
-      48,
-      "Water Path"
-     ]
-    },
-    "25": {
+    "87": {
      "FR": [
-      26,
-      "Power Plant"
+      53,
+      "Icefall Cave Entrance"
      ],
      "LG": [
-      26,
-      "Power Plant"
+      53,
+      "Icefall Cave Entrance"
      ]
     },
     "146": {
      "FR": [
       50,
-      "mt. Ember Summit"
+      "Mt. Ember Summit"
      ],
      "LG": [
       50,
-      "mt. Ember Summit"
+      "Mt. Ember Summit"
+     ]
+    },
+    "143": {
+     "FR": [
+      30,
+      "Route 12"
+     ],
+     "LG": [
+      30,
+      "Route 12"
+     ]
+    },
+    "148": {
+     "FR": [
+      35,
+      "Safari Zone Middle"
+     ],
+     "LG": [
+      35,
+      "Safari Zone Middle"
+     ]
+    },
+    "126": {
+     "LG": [
+      40,
+      "Mt. Ember"
+     ]
+    },
+    "73": {
+     "FR": [
+      45,
+      "Icefall Cave Waterfall"
+     ],
+     "LG": [
+      45,
+      "Icefall Cave Waterfall"
+     ]
+    },
+    "128": {
+     "FR": [
+      28,
+      "Safari Zone North"
+     ],
+     "LG": [
+      28,
+      "Safari Zone North"
+     ]
+    },
+    "102": {
+     "FR": [
+      35,
+      "Berry Forest"
+     ],
+     "LG": [
+      35,
+      "Berry Forest"
+     ]
+    },
+    "113": {
+     "FR": [
+      26,
+      "Safari Zone North"
+     ],
+     "LG": [
+      26,
+      "Safari Zone North"
+     ]
+    },
+    "28": {
+     "LG": [
+      46,
+      "Victory Road 2F"
      ]
     }
    }

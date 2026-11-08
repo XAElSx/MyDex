@@ -26,12 +26,27 @@ def get(path):
         return json.load(res)
 
 
+# Place names that read wrong after plain title case
+PLACE_FIXES = [
+    (r'^Mt ', 'Mt. '),
+    (r'^Digletts', "Diglett's"),
+    (r'^Pokemon', 'Pokémon'),
+    (r'^Cinnabar Island Cinnabar Lab', 'Cinnabar Lab'),
+    (r'^Victory Road 2 ', 'Victory Road '),
+    (r' North Towards .*', ' North'),
+    (r'^Safari Zone Area \d ', 'Safari Zone '),
+    (r'^Sea Route', 'Route'),
+]
+
+
 def place(slug):
     """'kanto-route-14-area' -> 'Route 14'"""
     s = re.sub(r'-area(-\d+)?$', '', slug)
     s = re.sub(r'^kanto-', '', s)
-    s = re.sub(r'\bmt-', 'mt. ', s)
-    return ' '.join(w if w.endswith('.') else w.capitalize() for w in s.replace('-', ' ').split())
+    name = ' '.join(w.upper() if re.fullmatch(r'b?\d+f', w) else w.capitalize() for w in s.split('-'))
+    for old, new in PLACE_FIXES:
+        name = re.sub(old, new, name)
+    return name
 
 
 def stages(chain):

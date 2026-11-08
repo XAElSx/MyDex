@@ -1,6 +1,6 @@
 import { getDexRecords, updateRecord, getAllRecords } from './db.js';
 import { loadDex, loadExclusives, loadBestCatch, moveLocalCache } from './api.js';
-import { ICONS, VIEWS, ORIGINS, originTag, spriteFor, cardHTML, boxHTML } from './ui.js';
+import { ICONS, VIEWS, ORIGINS, originTag, spriteFor, cardHTML, boxHTML, bestText } from './ui.js';
 import { scheduleSync, exportFile } from './sync.js';
 import { searchKey } from './names.js';
 
@@ -127,6 +127,7 @@ function applyFilters() {
 
   // Box view: hide boxes with no visible cards; open all boxes while searching
   dexEl.classList.toggle('searching', !!q);
+  dexEl.classList.toggle('show-place', filter === 'best'); // routes on the cards
   dexEl.querySelectorAll('.box').forEach(box => {
     box.hidden = !box.querySelector('.card:not([hidden])');
   });
@@ -328,6 +329,7 @@ function setCard(card, id, patch) {
 
 const sheet = document.getElementById('origin-sheet');
 const originEl = document.getElementById('origin');
+const bestEl = document.getElementById('origin-best');
 originEl.innerHTML = '<option value="">Not set</option>' +
   ORIGINS.map(([code, label]) => `<option value="${code}">${label}</option>`).join('');
 let sheetCard = null;
@@ -337,6 +339,9 @@ function openOrigin(card) {
   document.getElementById('origin-title').textContent =
     card.querySelector('.name').textContent + ' — caught in';
   originEl.value = recordOf(card.dataset.id).origin || '';
+  const best = bestOf(Number(card.dataset.id));
+  bestEl.hidden = !best;
+  bestEl.textContent = best ? 'Best wild catch: ' + bestText(best) : '';
   sheet.showModal();
 }
 

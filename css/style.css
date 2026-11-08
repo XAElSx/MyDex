@@ -303,7 +303,7 @@ header h1 { margin: 0; }
 .card.shiny.living::after { color: var(--gold); }
 .card { touch-action: manipulation; } /* no double-tap zoom on cards */
 
-.card[hidden], .box[hidden] { display: none; }
+.card[hidden], .box[hidden] { display: none !important; } /* .view-list .card sets display too */
 
 .num  { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .name { overflow-wrap: anywhere; }
@@ -430,9 +430,15 @@ header h1 { margin: 0; }
 }
 .best-place { display: none; }
 
+/* Best catch tab: the route on the card, under the level */
+.show-place .best { bottom: 17px; white-space: normal; overflow-wrap: anywhere; }
+.show-place .best-place { display: block; font-weight: 500; }
+
 .view-grid3 .best { left: 3px; bottom: 34px; font-size: 11px; }
 .view-list .best { position: static; margin-left: auto; font-size: 11px; }
 .view-list .best-place { display: inline; }
+.view-list .best-place::before { content: ' · '; }
+.show-place.view-grid3 .best { bottom: 34px; }
 
 /* ---------- Origin: "i" button, game tag, bottom sheet ---------- */
 .info {
@@ -492,6 +498,7 @@ header h1 { margin: 0; }
 }
 
 #origin-sheet::backdrop { background: rgba(0, 0, 0, .55); }
+#origin-best { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
 #origin-sheet h2 { margin: 0 0 12px; font-size: 17px; }
 
 #origin {
