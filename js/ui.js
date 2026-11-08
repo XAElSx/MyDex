@@ -69,13 +69,11 @@ function bestGroups(best) {
 export const bestText = best =>
   bestGroups(best).map(g => `${g.prefix}Lv ${g.level}, ${g.place}`).join(' · ');
 
-// "Lv 27" + where, for the most evolved stage of a line that can be caught in the wild
+// "Lv 27" on the most evolved stage of a line that can be caught in the wild; the place is in the peek
 function bestBadge(best) {
   if (!best) return '';
-  const groups = bestGroups(best);
-  const places = [...new Set(groups.map(g => g.place))].join(' / ');
-  return `<span class="best" title="Best wild catch: ${bestText(best)}">` +
-    `${groups.map(g => `${g.prefix}Lv ${g.level}`).join(' · ')}<span class="best-place">${places}</span></span>`;
+  const label = bestGroups(best).map(g => `${g.prefix}Lv ${g.level}`).join(' · ');
+  return `<span class="best" title="Best wild catch">${label}</span>`;
 }
 
 export function cardHTML(p, pad, { state, origin, living }, version, best) {
@@ -91,7 +89,7 @@ export function cardHTML(p, pad, { state, origin, living }, version, best) {
       ${versionBadge(version)}
       ${bestBadge(best)}
       ${originTag(origin)}
-      <button class="info" aria-label="Origin of ${name}">i</button>
+      <button class="info" aria-label="Details of ${name}">i</button>
     </div>`;
 }
 

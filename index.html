@@ -72,16 +72,24 @@
 
   <div id="dex"></div>
 
-  <dialog id="origin-sheet">
+  <dialog id="peek" aria-labelledby="peek-name">
     <form method="dialog">
-      <p id="origin-best" hidden></p>
-      <h2 id="origin-title">Caught in</h2>
-      <select id="origin" aria-label="Game caught in"></select>
-      <div class="sheet-row">
-        <button value="clear">Clear</button>
-        <button value="cancel">Cancel</button>
-        <button value="save" class="primary">Save</button>
+      <button id="peek-close" aria-label="Close">×</button>
+      <img id="peek-img" alt="" crossorigin="anonymous" draggable="false">
+      <p class="peek-meta">
+        <span id="peek-num"></span>
+        <span id="peek-version" class="version" hidden></span>
+      </p>
+      <h2 id="peek-name"></h2>
+      <p id="peek-best" hidden></p>
+      <div class="peek-marks">
+        <button type="button" data-mark="caught" aria-pressed="false">Caught</button>
+        <button type="button" data-mark="shiny" aria-pressed="false">Shiny</button>
+        <button type="button" data-mark="living" aria-pressed="false">Living Dex</button>
       </div>
+      <label class="peek-origin">Caught in
+        <select id="peek-origin"></select>
+      </label>
     </form>
   </dialog>
   <script type="module" src="js/app.js"></script>

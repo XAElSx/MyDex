@@ -428,19 +428,11 @@ header h1 { margin: 0; }
   overflow: hidden;
   white-space: nowrap;
 }
-.best-place { display: none; }
-
-/* Best catch tab: the route on the card, under the level */
-.show-place .best { bottom: 17px; white-space: normal; overflow-wrap: anywhere; }
-.show-place .best-place { display: block; font-weight: 500; }
 
 .view-grid3 .best { left: 3px; bottom: 34px; font-size: 11px; }
 .view-list .best { position: static; margin-left: auto; font-size: 11px; }
-.view-list .best-place { display: inline; }
-.view-list .best-place::before { content: ' · '; }
-.show-place.view-grid3 .best { bottom: 34px; }
 
-/* ---------- Origin: "i" button, game tag, bottom sheet ---------- */
+/* ---------- "i" button, game tag ---------- */
 .info {
   position: absolute;
   right: 1px;
@@ -486,34 +478,54 @@ header h1 { margin: 0; }
 .view-list .card.caught::after,
 .view-list .card.shiny::after { right: 52px; }
 
-#origin-sheet {
-  width: min(420px, 100%);
-  max-width: 100%;
-  margin: auto auto 0;
-  padding: 16px;
+/* Center peek: no padding on the dialog itself, so a click on it is always the backdrop */
+#peek {
+  width: min(420px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
   border: 1px solid var(--line);
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   background: var(--panel);
   color: var(--text);
+  overflow: auto;
 }
 
-#origin-sheet::backdrop { background: rgba(0, 0, 0, .55); }
-#origin-best { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
-#origin-sheet h2 { margin: 0 0 12px; font-size: 17px; }
+#peek::backdrop { background: rgba(0, 0, 0, .55); }
 
-#origin {
-  width: 100%;
-  min-height: 44px;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
-  color: var(--text);
-  font: inherit;
+#peek form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  text-align: center;
 }
 
-.sheet-row { display: flex; gap: 8px; margin-top: 12px; }
-.sheet-row button {
+#peek-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#peek-img { width: 192px; height: 192px; image-rendering: pixelated; }
+
+.peek-meta { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; color: var(--muted); }
+#peek-version { position: static; font-size: 12px; }
+#peek-name { margin: 0; font-size: 24px; }
+#peek-best { margin: 0; font-size: 14px; color: var(--muted); }
+
+.peek-marks { display: flex; gap: 8px; width: 100%; margin-top: 6px; }
+.peek-marks button {
   flex: 1;
   min-height: 44px;
   border: 1px solid var(--line);
@@ -524,10 +536,20 @@ header h1 { margin: 0; }
   font-weight: 600;
   cursor: pointer;
 }
-.sheet-row .primary { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.peek-marks [data-mark="caught"][aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.peek-marks [data-mark="shiny"][aria-pressed="true"] { border-color: var(--gold); background: var(--gold); color: #2b2205; }
+.peek-marks [data-mark="living"][aria-pressed="true"] { border-color: var(--living); background: var(--living); color: #0e2a1d; }
 
-@media (min-width: 700px) {
-  #origin-sheet { margin: auto; border-radius: 16px; }
+.peek-origin { display: grid; gap: 4px; width: 100%; font-size: 13px; color: var(--muted); text-align: left; }
+#peek-origin {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
 }
 
 /* ---------- Loading / error ---------- */

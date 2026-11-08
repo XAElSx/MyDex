@@ -27,9 +27,12 @@ Choices made where the spec was unclear or conflicted with the existing app.
 - **B9 Backup reminder.** Shows when the last export is more than 14 days old, or when there has never been an export and at least 10 entries are caught (across all dexes). Closing it hides it for 7 days (localStorage `backupSnooze`). Only a file export counts as a backup; Gist sync does not, because the spec ties the reminder to exports.
 
 ## Best catch
-- **What.** The "Best catch" tab shows, per evolution line, only the most evolved stage that appears in the wild in the game, with its highest wild level and place (badge "Lv 27"; the place shows on the card in the Best catch tab, in list view, and in the "i" sheet). Ties on stage: highest level wins. Gifts and eggs are not wild and are ignored; lines with no wild member get no card in this tab.
+- **What.** The "Best catch" tab shows, per evolution line, only the most evolved stage that appears in the wild in the game, with its highest wild level and place (badge "Lv 27" on the card; the place only in the "i" peek). Ties on stage: highest level wins. Gifts and eggs are not wild and are ignored; lines with no wild member get no card in this tab.
 - **Data.** Built once by `tools/build-best-catch.py` into `data/best-catch.json` instead of ~380 PokéAPI calls at runtime. Only members inside the dex are considered. Only `kanto` (FireRed/LeafGreen, tags FR/LG) for now: PokéAPI encounter data is patchy from Gen 6 on, so other games need checking before they are added to `GAMES` in the script. The tab is hidden in dexes without data.
 - **Different per game.** If FR and LG pick differently, the badge carries the game tag ("FR Lv 46").
+
+## Center peek
+- Opened by the "i" button, so tap, hold and double tap stay as fast marking. It replaces the old bottom sheet. Marks and the caught-in game save at once, so Save, Cancel and Clear are gone ("Not set" clears the game).
 
 ## UI
 - The top bar keeps its existing layout: title, dex selector and the Sync menu (which holds export/import) on top; search and the view switch below; the Missing filter is a tab. Nothing was moved, so existing users find everything where it was.

@@ -127,7 +127,6 @@ function applyFilters() {
 
   // Box view: hide boxes with no visible cards; open all boxes while searching
   dexEl.classList.toggle('searching', !!q);
-  dexEl.classList.toggle('show-place', filter === 'best'); // routes on the cards
   dexEl.querySelectorAll('.box').forEach(box => {
     box.hidden = !box.querySelector('.card:not([hidden])');
   });
@@ -188,6 +187,7 @@ document.addEventListener('dex-synced', async () => {
     applyMarks(card, rec);
     applyOrigin(card, rec.origin);
   });
+  showPeekState();
   applyFilters();
   updateProgress();
 });
@@ -257,7 +257,7 @@ dexEl.addEventListener('click', e => {
   if (head) return toggleBox(head.parentElement);
 
   const info = e.target.closest('.info');
-  if (info) return openOrigin(info.closest('.card'));
+  if (info) return openPeek(info.closest('.card'));
 
   const card = e.target.closest('.card');
   if (!card) return;
@@ -325,32 +325,61 @@ function setCard(card, id, patch) {
   filterTimer = setTimeout(applyFilters, MULTI_TAP + 50);
 }
 
-/* ---------- Origin sheet (the "i" button on a card) ---------- */
+/* ---------- Center peek (the "i" button on a card) ---------- */
 
-const sheet = document.getElementById('origin-sheet');
-const originEl = document.getElementById('origin');
-const bestEl = document.getElementById('origin-best');
+const peek = document.getElementById('peek');
+const peekImg = document.getElementById('peek-img');
+const versionEl = document.getElementById('peek-version');
+const bestEl = document.getElementById('peek-best');
+const originEl = document.getElementById('peek-origin');
+const markBtns = peek.querySelectorAll('[data-mark]');
 originEl.innerHTML = '<option value="">Not set</option>' +
   ORIGINS.map(([code, label]) => `<option value="${code}">${label}</option>`).join('');
-let sheetCard = null;
+let peekCard = null;
 
-function openOrigin(card) {
-  sheetCard = card;
-  document.getElementById('origin-title').textContent =
-    card.querySelector('.name').textContent + ' — caught in';
-  originEl.value = recordOf(card.dataset.id).origin || '';
-  const best = bestOf(Number(card.dataset.id));
+// Same rules as the gestures on a card
+const MARK_PATCH = {
+  caught: ({ state }) => (state === 'none' ? { state: 'caught' } : { state: 'none', living: false }),
+  shiny: ({ state }) => ({ state: state === 'shiny' ? 'caught' : 'shiny' }),
+  living: ({ state, living }) =>
+    (living ? { living: false } : { state: state === 'none' ? 'caught' : state, living: true })
+};
+
+function openPeek(card) {
+  peekCard = card;
+  const id = Number(card.dataset.id);
+  const name = card.querySelector('.name').textContent;
+  document.getElementById('peek-num').textContent = card.querySelector('.num').textContent;
+  document.getElementById('peek-name').textContent = name;
+  peekImg.alt = name;
+
+  const version = versionOf(id);
+  versionEl.hidden = !version;
+  if (version) {
+    versionEl.textContent = version.name + ' exclusive';
+    versionEl.style.setProperty('--v', version.color);
+  }
+
+  const best = bestOf(id);
   bestEl.hidden = !best;
   bestEl.textContent = best ? 'Best wild catch: ' + bestText(best) : '';
-  sheet.showModal();
+
+  showPeekState();
+  peek.showModal();
 }
 
-sheet.addEventListener('close', async () => {
-  const card = sheetCard;
-  sheetCard = null;
-  if (!card || !['save', 'clear'].includes(sheet.returnValue)) return;
+function showPeekState() {
+  if (!peekCard) return;
+  const id = peekCard.dataset.id;
+  const { state, origin, living } = recordOf(id);
+  peekImg.src = spriteFor(id, state);
+  const pressed = { caught: state !== 'none', shiny: state === 'shiny', living: !!living };
+  markBtns.forEach(btn => btn.setAttribute('aria-pressed', pressed[btn.dataset.mark]));
+  originEl.value = origin || '';
+}
+
+async function saveOrigin(card, origin) {
   const id = Number(card.dataset.id);
-  const origin = sheet.returnValue === 'clear' ? null : originEl.value || null;
   const prev = recordOf(id).origin;
   if (origin === prev) return;
   records[id] = { ...recordOf(id), origin };
@@ -361,13 +390,22 @@ sheet.addEventListener('close', async () => {
   } catch (err) {
     records[id] = { ...recordOf(id), origin: prev };
     applyOrigin(card, prev);
+    showPeekState();
     alert('Could not save: ' + err.message);
   }
-});
+}
 
-// Tap on the dimmed backdrop closes the sheet
-sheet.addEventListener('click', e => {
-  if (e.target === sheet) sheet.close('cancel');
+originEl.addEventListener('change', () => saveOrigin(peekCard, originEl.value || null));
+peek.addEventListener('close', () => { peekCard = null; });
+
+peek.addEventListener('click', e => {
+  // The dialog has no padding, so only the dimmed backdrop lands here
+  if (e.target === peek) return peek.close();
+  const btn = e.target.closest('[data-mark]');
+  if (!btn) return;
+  const saving = saveMarks(peekCard, MARK_PATCH[btn.dataset.mark](recordOf(peekCard.dataset.id)));
+  showPeekState();
+  saving.then(showPeekState); // a failed save puts the old marks back
 });
 
 /* ---------- Backup reminder ---------- */
