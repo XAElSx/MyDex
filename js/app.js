@@ -1,5 +1,5 @@
 import { getDexRecords, updateRecord, getAllRecords } from './db.js';
-import { loadDex, loadExclusives, moveLocalCache } from './api.js';
+import { loadDex, loadExclusives, loadBestCatch, moveLocalCache } from './api.js';
 import { ICONS, VIEWS, ORIGINS, originTag, spriteFor, cardHTML, boxHTML } from './ui.js';
 import { scheduleSync, exportFile } from './sync.js';
 import { searchKey } from './names.js';
@@ -49,7 +49,9 @@ const FILTERS = {
   caught: c => c.dataset.state !== 'none', // shiny counts as caught
   missing: c => c.dataset.state === 'none',
   shiny: c => c.dataset.state === 'shiny',
-  living: c => c.dataset.living === '1'
+  living: c => c.dataset.living === '1',
+  exclusive: c => !!c.querySelector('.version'), // only dexes with exclusives show this tab
+  best: c => !!c.querySelector('.best') // only dexes with best-catch data show this tab
 };
 
 const dexEl = document.getElementById('dex');
@@ -70,6 +72,8 @@ let records = {}; // speciesId -> { state, origin, living } for the current dex
 let list = [];
 let versions = new Map(); // speciesId -> version-exclusive info for the current dex
 const versionOf = id => versions.get(id);
+let bestCatch = new Map(); // speciesId -> best wild catch of its evolution line
+const bestOf = id => bestCatch.get(id);
 
 const NO_RECORD = { state: 'none', origin: null, living: false };
 const recordOf = id => records[id] || NO_RECORD;
@@ -93,17 +97,24 @@ function render() {
     const boxes = [];
     for (let i = 0; i < list.length; i += BOX_SIZE) {
       const index = i / BOX_SIZE;
-      boxes.push(boxHTML(list.slice(i, i + BOX_SIZE), index, pad, collapsed.has(index), recordOf, versionOf));
+      boxes.push(boxHTML(list.slice(i, i + BOX_SIZE), index, pad, collapsed.has(index), recordOf, versionOf, bestOf));
     }
     dexEl.innerHTML = boxes.join('');
   } else {
-    dexEl.innerHTML = list.map(p => cardHTML(p, pad, recordOf(p.id), versionOf(p.id))).join('');
+    dexEl.innerHTML = list.map(p => cardHTML(p, pad, recordOf(p.id), versionOf(p.id), bestOf(p.id))).join('');
   }
   applyFilters();
   updateProgress();
 }
 
 function applyFilters() {
+  // Dexes without version exclusives have no Exclusives tab; fall back to All
+  document.getElementById('tab-exclusive').hidden = !versions.size;
+  document.getElementById('tab-best').hidden = !bestCatch.size;
+  if ((filter === 'exclusive' && !versions.size) || (filter === 'best' && !bestCatch.size)) {
+    filter = 'all';
+    showTabs();
+  }
   const q = searchKey(searchEl.value.replace(/^\s*#/, ''));
   const isNum = /^\d+$/.test(q);
   const keep = FILTERS[filter];
@@ -394,12 +405,13 @@ async function showGame(name) {
   dexEl.className = '';
   dexEl.innerHTML = '<p class="message">Loading…</p>';
   try {
-    const [entries, saved, exclusive] =
-      await Promise.all([loadDex(name), getDexRecords(name), loadExclusives(name)]);
+    const [entries, saved, exclusive, best] =
+      await Promise.all([loadDex(name), getDexRecords(name), loadExclusives(name), loadBestCatch(name)]);
     if (game !== name) return; // user switched again while loading
     list = entries;
     records = saved;
     versions = exclusive;
+    bestCatch = best;
     searchEl.value = '';
     render();
   } catch (err) {

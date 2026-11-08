@@ -53,7 +53,25 @@ export const spriteFor = (id, state) =>
 const versionBadge = v =>
   (v ? `<span class="version" style="--v:${v.color}" title="${v.name} exclusive">${v.tag}</span>` : '');
 
-export function cardHTML(p, pad, { state, origin, living }, version) {
+// "Lv 27" + where, for the most evolved stage of a line that can be caught in the wild.
+// Games with the same level and place are merged; a game tag is added when they differ
+// or when the Pokémon is not catchable in every game of the dex.
+function bestBadge(best) {
+  if (!best) return '';
+  const groups = new Map();
+  for (const [tag, [level, place]] of Object.entries(best.found)) {
+    const key = level + '|' + place;
+    groups.set(key, { tags: [...(groups.get(key)?.tags || []), tag], level, place });
+  }
+  const list = [...groups.values()];
+  const tagged = list.length > 1 || list[0].tags.length < best.games.length;
+  const label = g => (tagged ? g.tags.join('/') + ' ' : '') + 'Lv ' + g.level;
+  const full = list.map(g => `${tagged ? g.tags.join('/') + ': ' : ''}Lv ${g.level}, ${g.place}`).join(' · ');
+  return `<span class="best" title="Best wild catch: ${full}">${list.map(label).join(' · ')}` +
+    `<span class="best-place"> · ${list.map(g => g.place).join(' / ')}</span></span>`;
+}
+
+export function cardHTML(p, pad, { state, origin, living }, version, best) {
   const name = displayName(p.name);
   // Search matches the display name and the API name ("nidoran f", "farfetchd")
   const keys = [...new Set([searchKey(name), searchKey(p.name)])].join('|');
@@ -64,12 +82,13 @@ export function cardHTML(p, pad, { state, origin, living }, version) {
       <span class="num">#${String(p.num).padStart(pad, '0')}</span>
       <span class="name">${name}</span>
       ${versionBadge(version)}
+      ${bestBadge(best)}
       ${originTag(origin)}
       <button class="info" aria-label="Origin of ${name}">i</button>
     </div>`;
 }
 
-export function boxHTML(chunk, index, pad, closed, recordOf, versionOf) {
+export function boxHTML(chunk, index, pad, closed, recordOf, versionOf, bestOf) {
   return `
     <section class="box${closed ? ' collapsed' : ''}" data-box="${index}">
       <button class="box-head" aria-expanded="${!closed}">
@@ -79,6 +98,6 @@ export function boxHTML(chunk, index, pad, closed, recordOf, versionOf) {
         <span class="box-count"></span>
         <span class="chevron">${ICONS.chevron}</span>
       </button>
-      <div class="box-grid">${chunk.map(p => cardHTML(p, pad, recordOf(p.id), versionOf(p.id))).join('')}</div>
+      <div class="box-grid">${chunk.map(p => cardHTML(p, pad, recordOf(p.id), versionOf(p.id), bestOf(p.id))).join('')}</div>
     </section>`;
 }

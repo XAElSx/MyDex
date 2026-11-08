@@ -45,6 +45,17 @@ export async function loadExclusives(dex) {
   return map;
 }
 
+// Best wild catch per evolution line for one dex: Map speciesId -> { games, found },
+// found = { FR: [level, place], ... }. Empty when the dex has no data (the tab is hidden then).
+let bestCatch;
+export async function loadBestCatch(dex) {
+  bestCatch ??= fetch('data/best-catch.json')
+    .then(res => (res.ok ? res.json() : { dexes: {} }))
+    .catch(() => ({ dexes: {} }));
+  const { games = [], picks = {} } = (await bestCatch).dexes[dex] || {};
+  return new Map(Object.entries(picks).map(([id, found]) => [Number(id), { games, found }]));
+}
+
 // Older versions cached dex lists in localStorage as dex:<name>. Move them over once.
 export async function moveLocalCache() {
   localStorage.removeItem('species'); // step-2 cache, no longer used
