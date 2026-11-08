@@ -1,23 +1,23 @@
 {
- "_source": "Version exclusives per species (National Dex ids). Source: Serebii.net exclusives pages (serebii.net/<game>/exclusives.shtml), Red/Blue from the international release lists. Species with a different regional form in each version (Tauros in Scarlet/Violet, Basculin and Indeedee in Sword/Shield) and Mega Evolutions in X/Y are left out because marks are per species. Only base-game lists; DLC dexes get no badges.",
+ "_source": "Version exclusives per species (National Dex ids). Source: Serebii.net exclusives pages (serebii.net/<game>/exclusives.shtml), FireRed/LeafGreen (Kanto dex, #1-151 only). Species with a different regional form in each version (Tauros in Scarlet/Violet, Basculin and Indeedee in Sword/Shield) and Mega Evolutions in X/Y are left out because marks are per species. Only base-game lists; DLC dexes get no badges.",
  "pairs": [
   {
-   "pair": "red-blue",
+   "pair": "firered-leafgreen",
    "dexes": [
     "kanto"
    ],
    "versions": [
     {
-     "name": "Red",
-     "tag": "R",
+     "name": "FireRed",
+     "tag": "FR",
      "color": "#e5534b",
-     "ids": [23, 24, 43, 44, 45, 56, 57, 58, 59, 123, 125]
+     "ids": [23, 24, 43, 44, 45, 54, 55, 58, 59, 90, 91, 123, 125]
     },
     {
-     "name": "Blue",
-     "tag": "B",
-     "color": "#4f8fe8",
-     "ids": [27, 28, 37, 38, 52, 53, 69, 70, 71, 126, 127]
+     "name": "LeafGreen",
+     "tag": "LG",
+     "color": "#3fa65a",
+     "ids": [27, 28, 37, 38, 69, 70, 71, 79, 80, 120, 121, 126, 127]
     }
    ]
   },

@@ -8,7 +8,7 @@ Live: https://xaelsx.github.io/MyDex/
 - **Mark Pokémon**: tap a card for caught (✓); hold it for half a second for shiny (★). Uncaught cards are dimmed.
 - **Living Dex**: double tap a card (triple click on PC) to mark it as part of your living dex (green). The *Living Dex* tab shows only those.
 - **Origin**: the small "i" button on a card sets the game it was caught in; the game shows as a tag on the card.
-- **Version exclusives**: in Red/Blue, X/Y, Sun/Moon, Sword/Shield and Scarlet/Violet dexes, exclusive Pokémon get a version badge.
+- **Version exclusives**: in FireRed/LeafGreen, X/Y, Sun/Moon, Sword/Shield and Scarlet/Violet dexes, exclusive Pokémon get a version badge.
 - **Views**: List, Grid · 3 columns, Grid · 6 columns, and Box (boxes of 30, like Pokémon HOME). Collapsed boxes are remembered.
 - **Search** by name or number, with proper names (Mr. Mime, Type: Null, Flabébé…). Accents and punctuation don't matter.
 - **Filters**: All, Caught, Missing, Shiny, Living Dex.
