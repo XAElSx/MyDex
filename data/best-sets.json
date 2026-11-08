@@ -16,26 +16,26 @@
    },
    "2": {
     "source": "smogon",
-    "label": "PU · Specially Defensive",
+    "label": "PU · Bulky Setup Sweeper",
     "ability": "Overgrow",
-    "nature": "Calm",
+    "nature": "Careful",
     "moves": [
      "Leech Seed",
-     "Sleep Powder",
      "Synthesis",
-     "Hidden Power Grass"
+     "Swords Dance",
+     "Sludge Bomb"
     ]
    },
    "3": {
     "source": "smogon",
-    "label": "OU · Disabler",
+    "label": "OU · Physical Attacker",
     "ability": "Overgrow",
-    "nature": "Careful",
+    "nature": "Adamant",
     "moves": [
-     "Sleep Powder",
-     "Leech Seed",
+     "Curse",
      "Sludge Bomb",
-     "Synthesis"
+     "Earthquake",
+     "Sleep Powder"
     ]
    },
    "4": {
@@ -87,27 +87,27 @@
     ]
    },
    "8": {
-    "source": "smogon",
-    "label": "PU · Defensive",
+    "source": "calc",
+    "label": null,
     "ability": "Torrent",
-    "nature": "Bold",
+    "nature": "Modest",
     "moves": [
-     "Rapid Spin",
-     "Surf",
-     "Toxic",
-     "Hidden Power Grass"
+     "Hydro Pump",
+     "Double-Edge",
+     "Ice Beam",
+     "Iron Tail"
     ]
    },
    "9": {
-    "source": "smogon",
-    "label": "OU · Standard",
+    "source": "calc",
+    "label": null,
     "ability": "Torrent",
-    "nature": "Bold",
+    "nature": "Modest",
     "moves": [
-     "Surf",
-     "Ice Beam",
-     "Rapid Spin",
-     "Roar"
+     "Hydro Pump",
+     "Double-Edge",
+     "Earthquake",
+     "Ice Beam"
     ]
    },
    "10": {
@@ -131,14 +131,14 @@
    },
    "12": {
     "source": "smogon",
-    "label": "NU · Double Powder",
+    "label": "NU · Choice Band",
     "ability": "Compound Eyes",
-    "nature": "Timid",
+    "nature": "Jolly",
     "moves": [
+     "Silver Wind",
+     "Aerial Ace",
      "Sleep Powder",
-     "Stun Spore",
-     "Psychic",
-     "Hidden Power Fire"
+     "Hidden Power Fighting"
     ]
    },
    "13": {
@@ -162,14 +162,14 @@
    },
    "15": {
     "source": "smogon",
-    "label": "NU · Choice Band",
+    "label": "NU · Swords Dance",
     "ability": "Swarm",
     "nature": "Jolly",
     "moves": [
-     "Sludge Bomb",
+     "Endure",
+     "Swords Dance",
      "Hidden Power Bug",
-     "Brick Break",
-     "Double-Edge"
+     "Sludge Bomb"
     ]
    },
    "16": {
@@ -294,14 +294,14 @@
    },
    "26": {
     "source": "smogon",
-    "label": "UU · Encore",
+    "label": "UU · Special Sweeper with Focus Punch",
     "ability": "Static",
-    "nature": "Mild",
+    "nature": "Timid",
     "moves": [
      "Thunderbolt",
-     "Encore",
-     "Hidden Power Grass",
-     "Focus Punch"
+     "Focus Punch",
+     "Surf",
+     "Hidden Power Ice"
     ]
    },
    "27": {
@@ -390,13 +390,13 @@
    },
    "34": {
     "source": "smogon",
-    "label": "OU · Choice Band",
+    "label": "OU · Mixed Sweeper",
     "ability": "Poison Point",
-    "nature": "Hasty",
+    "nature": "Lonely",
     "moves": [
      "Earthquake",
      "Megahorn",
-     "Sludge Bomb",
+     "Thunderbolt",
      "Ice Beam"
     ]
    },
@@ -462,14 +462,14 @@
    },
    "40": {
     "source": "smogon",
-    "label": "NU · Counter",
+    "label": "NU · Special Attacker",
     "ability": "Cute Charm",
-    "nature": "Impish",
+    "nature": "Modest",
     "moves": [
-     "Counter",
-     "Wish",
-     "Protect",
-     "Return"
+     "Ice Beam",
+     "Thunderbolt",
+     "Fire Blast",
+     "Wish"
     ]
    },
    "41": {
@@ -510,26 +510,26 @@
    },
    "44": {
     "source": "smogon",
-    "label": "ZU · Specially Defensive",
-    "ability": "Chlorophyll",
-    "nature": "Careful",
-    "moves": [
-     "Sludge Bomb",
-     "Hidden Power Grass",
-     "Leech Seed",
-     "Moonlight"
-    ]
-   },
-   "45": {
-    "source": "smogon",
-    "label": "UU · SunnyBeam",
+    "label": "ZU · Sun Sweeper",
     "ability": "Chlorophyll",
     "nature": "Modest",
     "moves": [
      "Sunny Day",
-     "Sleep Powder",
      "Solar Beam",
-     "Hidden Power Fire"
+     "Hidden Power Fire",
+     "Synthesis"
+    ]
+   },
+   "45": {
+    "source": "smogon",
+    "label": "UU · Swords Dance",
+    "ability": "Chlorophyll",
+    "nature": "Adamant",
+    "moves": [
+     "Sleep Powder",
+     "Swords Dance",
+     "Sludge Bomb",
+     "Moonlight"
     ]
    },
    "46": {
@@ -546,12 +546,12 @@
    },
    "47": {
     "source": "smogon",
-    "label": "NU · Support",
+    "label": "NU · Swords Dance",
     "ability": "Effect Spore",
     "nature": "Adamant",
     "moves": [
      "Spore",
-     "Aromatherapy",
+     "Swords Dance",
      "Sludge Bomb",
      "Hidden Power Rock"
     ]
@@ -569,27 +569,27 @@
     ]
    },
    "49": {
-    "source": "smogon",
-    "label": "NU · Lead Support",
+    "source": "calc",
+    "label": null,
     "ability": "Shield Dust",
     "nature": "Jolly",
     "moves": [
-     "Sleep Powder",
-     "Baton Pass",
-     "Substitute",
-     "Sludge Bomb"
+     "Sludge Bomb",
+     "Psychic",
+     "Double-Edge",
+     "Silver Wind"
     ]
    },
    "50": {
     "source": "smogon",
-    "label": "NU · Trapper",
+    "label": "LC · Offensive Trapper",
     "ability": "Arena Trap",
     "nature": "Jolly",
     "moves": [
      "Earthquake",
      "Rock Slide",
-     "Sludge Bomb",
-     "Double-Edge"
+     "Hidden Power Ghost",
+     "Substitute"
     ]
    },
    "51": {
@@ -605,15 +605,15 @@
     ]
    },
    "52": {
-    "source": "smogon",
-    "label": "LC · Lead",
+    "source": "calc",
+    "label": null,
     "ability": "Pickup",
     "nature": "Jolly",
     "moves": [
-     "Fake Out",
-     "Thief",
-     "Return",
-     "Hidden Power Steel"
+     "Double-Edge",
+     "Thunderbolt",
+     "Shadow Ball",
+     "Iron Tail"
     ]
    },
    "53": {
@@ -666,14 +666,14 @@
    },
    "57": {
     "source": "smogon",
-    "label": "UU · Choice Band",
+    "label": "UU · Bulk Up",
     "ability": "Vital Spirit",
     "nature": "Jolly",
     "moves": [
+     "Bulk Up",
      "Cross Chop",
-     "Focus Punch",
-     "Rock Slide",
-     "Hidden Power Ghost"
+     "Substitute",
+     "Rock Slide"
     ]
    },
    "58": {
@@ -690,14 +690,14 @@
    },
    "59": {
     "source": "smogon",
-    "label": "OU · Barkanine",
+    "label": "OU · Special Sweeper",
     "ability": "Intimidate",
-    "nature": "Adamant",
+    "nature": "Modest",
     "moves": [
-     "Howl",
-     "Hidden Power Fighting",
-     "Extreme Speed",
-     "Flamethrower"
+     "Fire Blast",
+     "Hidden Power Grass",
+     "Crunch",
+     "Extreme Speed"
     ]
    },
    "60": {
@@ -846,26 +846,26 @@
    },
    "72": {
     "source": "smogon",
-    "label": "PU · Specially Defensive",
+    "label": "ZU · Swords Dance",
     "ability": "Liquid Ooze",
-    "nature": "Calm",
+    "nature": "Jolly",
     "moves": [
-     "Rapid Spin",
+     "Swords Dance",
+     "Sludge Bomb",
      "Surf",
-     "Toxic",
-     "Hidden Power Grass"
+     "Substitute"
     ]
    },
    "73": {
     "source": "smogon",
-    "label": "UU · Druidcruel",
-    "ability": "Clear Body",
-    "nature": "Hasty",
+    "label": "UU · Special Sweeper",
+    "ability": "Liquid Ooze",
+    "nature": "Timid",
     "moves": [
-     "Hydro Pump",
-     "Sludge Bomb",
-     "Substitute",
-     "Swords Dance"
+     "Surf",
+     "Ice Beam",
+     "Giga Drain",
+     "Substitute"
     ]
    },
    "74": {
@@ -906,26 +906,26 @@
    },
    "77": {
     "source": "smogon",
-    "label": "LC · Sunny Day",
+    "label": "LC · Offensive",
     "ability": "Flash Fire",
-    "nature": "Timid",
+    "nature": "Hasty",
     "moves": [
-     "Sunny Day",
-     "Fire Blast",
-     "Solar Beam",
+     "Overheat",
+     "Hidden Power Ground",
+     "Toxic",
      "Substitute"
     ]
    },
    "78": {
     "source": "smogon",
-    "label": "UU · Baton Pass",
+    "label": "UU · Mixed Attacker",
     "ability": "Flash Fire",
-    "nature": "Timid",
+    "nature": "Hasty",
     "moves": [
-     "Baton Pass",
-     "Substitute",
-     "Fire Blast",
-     "Hidden Power Grass"
+     "Hypnosis",
+     "Overheat",
+     "Iron Tail",
+     "Hidden Power Rock"
     ]
    },
    "79": {
@@ -942,14 +942,14 @@
    },
    "80": {
     "source": "smogon",
-    "label": "OU · Defensive",
+    "label": "OU · Curse",
     "ability": "Own Tempo",
-    "nature": "Bold",
+    "nature": "Brave",
     "moves": [
-     "Surf",
-     "Psychic",
-     "Rest",
-     "Calm Mind"
+     "Curse",
+     "Earthquake",
+     "Ice Beam",
+     "Rest"
     ]
    },
    "81": {
@@ -965,15 +965,15 @@
     ]
    },
    "82": {
-    "source": "smogon",
-    "label": "OU · Trapper",
+    "source": "calc",
+    "label": null,
     "ability": "Magnet Pull",
     "nature": "Modest",
     "moves": [
      "Thunderbolt",
-     "Hidden Power Fire",
-     "Toxic",
-     "Protect"
+     "Double-Edge",
+     "Thunder",
+     "Spark"
     ]
    },
    "83": {
@@ -1026,14 +1026,14 @@
    },
    "87": {
     "source": "smogon",
-    "label": "NU · Specially Defensive",
+    "label": "NU · Special Attacker",
     "ability": "Thick Fat",
-    "nature": "Calm",
+    "nature": "Modest",
     "moves": [
      "Ice Beam",
      "Surf",
-     "Rest",
-     "Sleep Talk"
+     "Hidden Power Electric",
+     "Encore"
     ]
    },
    "88": {
@@ -1050,14 +1050,14 @@
    },
    "89": {
     "source": "smogon",
-    "label": "OU · SubPunch",
+    "label": "OU · Curse",
     "ability": "Sticky Hold",
-    "nature": "Adamant",
+    "nature": "Sassy",
     "moves": [
+     "Curse",
      "Sludge Bomb",
-     "Substitute",
-     "Focus Punch",
-     "Fire Blast"
+     "Fire Blast",
+     "Explosion"
     ]
    },
    "90": {
@@ -1073,27 +1073,27 @@
     ]
    },
    "91": {
-    "source": "smogon",
-    "label": "OU · Spiker",
+    "source": "calc",
+    "label": null,
     "ability": "Shell Armor",
-    "nature": "Timid",
+    "nature": "Modest",
     "moves": [
-     "Spikes",
      "Surf",
-     "Rapid Spin",
-     "Explosion"
+     "Ice Beam",
+     "Double-Edge",
+     "Blizzard"
     ]
    },
    "92": {
     "source": "smogon",
-    "label": "PU · Stallbreaker",
+    "label": "LC · Mixed Offensive",
     "ability": "Levitate",
-    "nature": "Timid",
+    "nature": "Hasty",
     "moves": [
      "Psychic",
+     "Sludge Bomb",
      "Thunderbolt",
-     "Taunt",
-     "Will-O-Wisp"
+     "Explosion"
     ]
    },
    "93": {
@@ -1110,50 +1110,50 @@
    },
    "94": {
     "source": "smogon",
-    "label": "OU · Defensive",
+    "label": "OU · Offensive",
     "ability": "Levitate",
     "nature": "Timid",
     "moves": [
-     "Will-O-Wisp",
-     "Taunt",
      "Thunderbolt",
-     "Ice Punch"
+     "Ice Punch",
+     "Hidden Power Grass",
+     "Explosion"
     ]
    },
    "95": {
     "source": "smogon",
-    "label": "NU · Sunny Day Support",
-    "ability": "Sturdy",
+    "label": "LC · Offensive",
+    "ability": "Rock Head",
     "nature": "Jolly",
     "moves": [
-     "Sunny Day",
+     "Rock Slide",
+     "Earthquake",
      "Explosion",
-     "Block",
-     "Earthquake"
+     "Endure"
     ]
    },
    "96": {
-    "source": "smogon",
-    "label": "ZU · Defensive",
+    "source": "calc",
+    "label": null,
     "ability": "Insomnia",
-    "nature": "Calm",
+    "nature": "Modest",
     "moves": [
      "Psychic",
-     "Toxic",
-     "Wish",
-     "Protect"
+     "Double-Edge",
+     "Shadow Ball",
+     "Brick Break"
     ]
    },
    "97": {
-    "source": "smogon",
-    "label": "UU · Support",
+    "source": "calc",
+    "label": null,
     "ability": "Insomnia",
-    "nature": "Bold",
+    "nature": "Modest",
     "moves": [
-     "Seismic Toss",
-     "Thunder Wave",
-     "Wish",
-     "Reflect"
+     "Psychic",
+     "Double-Edge",
+     "Shadow Ball",
+     "Brick Break"
     ]
    },
    "98": {
@@ -1182,26 +1182,26 @@
    },
    "100": {
     "source": "smogon",
-    "label": "NU · Suicide Rain Lead",
+    "label": "LC · Offensive",
     "ability": "Static",
-    "nature": "Naive",
+    "nature": "Timid",
     "moves": [
-     "Rain Dance",
-     "Thunder",
-     "Light Screen",
+     "Thunderbolt",
+     "Hidden Power Grass",
+     "Thief",
      "Explosion"
     ]
    },
    "101": {
     "source": "smogon",
-    "label": "OU · Explosion",
+    "label": "UU · Substitute",
     "ability": "Static",
-    "nature": "Hasty",
+    "nature": "Rash",
     "moves": [
      "Thunderbolt",
-     "Thunder Wave",
-     "Hidden Power Grass",
-     "Explosion"
+     "Substitute",
+     "Explosion",
+     "Hidden Power Ice"
     ]
    },
    "102": {
@@ -1230,25 +1230,25 @@
    },
    "104": {
     "source": "smogon",
-    "label": "PU · Lead",
+    "label": "LC · Offensive",
     "ability": "Rock Head",
     "nature": "Adamant",
     "moves": [
-     "Substitute",
-     "Swords Dance",
      "Bonemerang",
-     "Double-Edge"
+     "Double-Edge",
+     "Hidden Power Ghost",
+     "Swords Dance"
     ]
    },
    "105": {
     "source": "smogon",
-    "label": "OU · Swords Dance",
+    "label": "OU · All-Out Attacker",
     "ability": "Rock Head",
-    "nature": "Jolly",
+    "nature": "Adamant",
     "moves": [
-     "Swords Dance",
      "Bonemerang",
      "Rock Slide",
+     "Double-Edge",
      "Focus Punch"
     ]
    },
@@ -1278,50 +1278,50 @@
    },
    "108": {
     "source": "smogon",
-    "label": "NU · Defensive",
+    "label": "PU · CurseTung",
     "ability": "Own Tempo",
     "nature": "Careful",
     "moves": [
-     "Wish",
-     "Protect",
-     "Heal Bell",
-     "Seismic Toss"
+     "Curse",
+     "Rest",
+     "Sleep Talk",
+     "Body Slam"
     ]
    },
    "109": {
-    "source": "smogon",
-    "label": "LC · Defensive",
+    "source": "calc",
+    "label": null,
     "ability": "Levitate",
-    "nature": "Impish",
+    "nature": "Adamant",
     "moves": [
      "Sludge Bomb",
-     "Hidden Power Ground",
-     "Thief",
-     "Explosion"
+     "Fire Blast",
+     "Thunderbolt",
+     "Shadow Ball"
     ]
    },
    "110": {
     "source": "smogon",
-    "label": "OU · Defensive",
+    "label": "OU · Offensive",
     "ability": "Levitate",
-    "nature": "Impish",
+    "nature": "Brave",
     "moves": [
      "Sludge Bomb",
+     "Flamethrower",
      "Haze",
-     "Will-O-Wisp",
-     "Pain Split"
+     "Explosion"
     ]
    },
    "111": {
-    "source": "smogon",
-    "label": "ZU · Tank",
-    "ability": "Rock Head",
+    "source": "calc",
+    "label": null,
+    "ability": "Lightning Rod",
     "nature": "Adamant",
     "moves": [
      "Earthquake",
-     "Rock Slide",
+     "Double-Edge",
      "Megahorn",
-     "Protect"
+     "Rock Slide"
     ]
    },
    "112": {
@@ -1446,26 +1446,26 @@
    },
    "122": {
     "source": "smogon",
-    "label": "UU · Calm Mind + Baton Pass",
+    "label": "UU · Calm Mind Sweeper",
     "ability": "Soundproof",
     "nature": "Calm",
     "moves": [
+     "Hypnosis",
      "Calm Mind",
      "Psychic",
-     "Baton Pass",
-     "Encore"
+     "Thunderbolt"
     ]
    },
    "123": {
     "source": "smogon",
-    "label": "UU · Choice Band",
+    "label": "UU · Swords Dance",
     "ability": "Swarm",
     "nature": "Jolly",
     "moves": [
-     "Hidden Power Bug",
+     "Swords Dance",
+     "Silver Wind",
      "Aerial Ace",
-     "Double-Edge",
-     "Quick Attack"
+     "Hidden Power Ground"
     ]
    },
    "124": {
@@ -1553,21 +1553,21 @@
    },
    "131": {
     "source": "smogon",
-    "label": "OU · RestTalk",
-    "ability": "Water Absorb",
-    "nature": "Bold",
+    "label": "UU · Curse",
+    "ability": "Shell Armor",
+    "nature": "Sassy",
     "moves": [
-     "Ice Beam",
-     "Thunderbolt",
-     "Rest",
-     "Sleep Talk"
+     "Curse",
+     "Return",
+     "Surf",
+     "Rest"
     ]
    },
    "132": {
-    "source": "smogon",
-    "label": "NU · Transform",
+    "source": "calc",
+    "label": null,
     "ability": "Limber",
-    "nature": "Impish",
+    "nature": "Adamant",
     "moves": [
      "Transform"
     ]
@@ -1585,15 +1585,15 @@
     ]
    },
    "134": {
-    "source": "smogon",
-    "label": "OU · Substitute + WishPass",
+    "source": "calc",
+    "label": null,
     "ability": "Water Absorb",
-    "nature": "Bold",
+    "nature": "Modest",
     "moves": [
-     "Surf",
-     "Substitute",
-     "Wish",
-     "Baton Pass"
+     "Hydro Pump",
+     "Ice Beam",
+     "Double-Edge",
+     "Bite"
     ]
    },
    "135": {
@@ -1634,14 +1634,14 @@
    },
    "138": {
     "source": "smogon",
-    "label": "PU · Defensive Spikes",
-    "ability": "Shell Armor",
-    "nature": "Bold",
+    "label": "PU · Rain Sweeper",
+    "ability": "Swift Swim",
+    "nature": "Modest",
     "moves": [
-     "Spikes",
-     "Toxic",
-     "Surf",
-     "Ice Beam"
+     "Rain Dance",
+     "Hydro Pump",
+     "Ice Beam",
+     "Hidden Power Grass"
     ]
    },
    "139": {
@@ -1705,15 +1705,15 @@
     ]
    },
    "144": {
-    "source": "smogon",
-    "label": "OU · RestTalk",
+    "source": "calc",
+    "label": null,
     "ability": "Pressure",
-    "nature": "Calm",
+    "nature": "Modest",
     "moves": [
      "Ice Beam",
-     "Rest",
-     "Sleep Talk",
-     "Roar"
+     "Double-Edge",
+     "Aerial Ace",
+     "Water Pulse"
     ]
    },
    "145": {
@@ -1754,14 +1754,14 @@
    },
    "148": {
     "source": "smogon",
-    "label": "PU · Specially Defensive",
+    "label": "PU · Dragon Dance",
     "ability": "Shed Skin",
-    "nature": "Calm",
+    "nature": "Adamant",
     "moves": [
-     "Thunder Wave",
+     "Dragon Dance",
      "Rest",
-     "Thunderbolt",
-     "Ice Beam"
+     "Iron Tail",
+     "Hidden Power Fighting"
     ]
    },
    "149": {
@@ -1778,26 +1778,26 @@
    },
    "150": {
     "source": "smogon",
-    "label": "Ubers · Boom Lead",
+    "label": "Ubers · Substitute + Bulk Up",
     "ability": "Pressure",
-    "nature": "Mild",
+    "nature": "Jolly",
     "moves": [
-     "Ice Beam",
-     "Thunder",
-     "Self-Destruct",
-     "Calm Mind"
+     "Substitute",
+     "Bulk Up",
+     "Focus Punch",
+     "Shadow Ball"
     ]
    },
    "151": {
     "source": "smogon",
-    "label": "Ubers · Lum Berry Explosion Lead",
+    "label": "Ubers · Swords Dance",
     "ability": "Synchronize",
-    "nature": "Modest",
+    "nature": "Jolly",
     "moves": [
-     "Thunder Wave",
-     "Thunder",
-     "Fire Blast",
-     "Explosion"
+     "Swords Dance",
+     "Shadow Ball",
+     "Explosion",
+     "Earthquake"
     ]
    }
   }

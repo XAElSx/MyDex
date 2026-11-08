@@ -24,6 +24,13 @@ TIER_NAMES = {'ou': 'OU', 'ubers': 'Ubers', 'uu': 'UU', 'ru': 'RU', 'nu': 'NU', 
 # Smogon names that are not just the capitalized PokeAPI name
 SMOGON_NAMES = {'nidoran-f': 'Nidoran-F', 'nidoran-m': 'Nidoran-M', 'mr-mime': 'Mr. Mime', 'farfetchd': "Farfetch'd"}
 
+# Smogon set names, lowercase. Only attacking sets are used: all-out attacker, then setup
+SETUP_SETS = ('swords dance', 'dragon dance', 'calm mind', 'bulk up', 'belly drum', 'agility', 'curse',
+              'nasty plot', 'growth', 'setup', 'sweeper')
+ATTACK_SETS = ('offensive', 'attacker', 'wallbreaker', 'mixed', 'choice band')
+NOT_ATTACKING = ('wall', 'stall', 'tank', 'support', 'cleric', 'heal bell', 'wish', 'spike', 'baton', 'trap',
+                 'lead', 'utility', 'rest')
+
 LEARN_METHODS = {'level-up', 'machine', 'tutor'}
 PHYSICAL_TYPES = {'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel'}
 
@@ -55,14 +62,35 @@ def first(value):
     return value[0] if isinstance(value, list) else value
 
 
+def offense_rank(name, chosen):
+    """Lower is better: 0 all-out attacker, 1 offensive setup, 2 other attacker. None = not an attacking set."""
+    n = name.lower()
+    if 'defensive' in n:
+        return None
+    if 'offensive' not in n and any(w in n.replace('wallbreaker', '') for w in NOT_ATTACKING):
+        return None
+    if 'all-out' in n:
+        return 0
+    if any(w in n for w in SETUP_SETS):
+        return 1
+    if any(w in n for w in ATTACK_SETS):
+        return 2
+    # A name like "Standard" says nothing: go by where the EVs went
+    evs = first(chosen.get('evs')) or {}
+    return 3 if max(evs.get('atk', 0), evs.get('spa', 0)) >= 200 else None
+
+
 def smogon_set(sets):
-    """(label, set) of the best format, or None."""
+    """(label, set) of the best attacking set, best format first. None if there is no attacking set."""
     if not sets:
         return None
-    formats = sorted(sets, key=lambda f: TIERS.index(f) if f in TIERS else len(TIERS))
-    fmt = formats[0]
-    name, chosen = next(iter(sets[fmt].items()))
-    return f'{TIER_NAMES.get(fmt, fmt.upper())} · {name}', chosen
+    for fmt in sorted(sets, key=lambda f: TIERS.index(f) if f in TIERS else len(TIERS)):
+        ranked = [(offense_rank(name, chosen), i, name, chosen) for i, (name, chosen) in enumerate(sets[fmt].items())]
+        ranked = [row for row in ranked if row[0] is not None]
+        if ranked:
+            _, _, name, chosen = min(ranked, key=lambda row: row[:2])
+            return f'{TIER_NAMES.get(fmt, fmt.upper())} · {name}', chosen
+    return None
 
 
 def gen_abilities(pokemon, gen):
